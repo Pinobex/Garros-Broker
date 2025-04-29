@@ -13,12 +13,14 @@ bazel_dep(name = "rules_rust", version = "0.60.0")
 
 rust = use_extension("@rules_rust//rust:extensions.bzl", "rust")
 rust.toolchain(
-    edition = "2021",
+    edition = "2024",
     versions = ["1.75.0"],
 )
 
 crate = use_extension("@rules_rust//crate_universe:extensions.bzl", "crate")
 crate.spec(package = "rumqttd", version = "0.19.0")
+crate.spec(package = "tracing-subscriber", version = "0.3")
+crate.spec(package = "config", version = "0.14")
 crate.from_specs()
 use_repo(crate, "crates")
 

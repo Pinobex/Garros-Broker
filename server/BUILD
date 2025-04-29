@@ -7,5 +7,7 @@ rust_binary(
     deps = [
         # External crates
         "@crates//:rumqttd",
+        "@crates//:tracing-subscriber",
+        "@crates//:config",
     ],
 )
