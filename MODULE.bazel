@@ -18,11 +18,8 @@ rust.toolchain(
 )
 
 crate = use_extension("@rules_rust//crate_universe:extensions.bzl", "crate")
-crate.from_cargo(
-    name = "crates",
-    cargo_lockfile = "//:Cargo.lock",
-    manifests = ["//:Cargo.toml"],
-)
+crate.spec(package = "rumqttd", version = "0.19.0")
+crate.from_specs()
 use_repo(crate, "crates")
 
 use_repo(rust, "rust_toolchains")

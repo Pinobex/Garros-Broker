@@ -4,4 +4,8 @@ rust_binary(
     name = "server",
     srcs = ["src/main.rs"],
     edition = "2021",
+    deps = [
+        # External crates
+        "@crates//:rumqttd",
+    ],
 )
