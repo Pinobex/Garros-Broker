@@ -1,5 +1,5 @@
 use rumqttd::{Broker, Config};
-use tracing_subscriber;
+use std::sync::Arc;
 
 fn main() {
     println!("Hello, world from Server!");
@@ -24,23 +24,18 @@ fn main() {
     // for e.g. if you want it for [v4.1] server, you can do something like
     let server = config.v4.as_mut().and_then(|v4| v4.get_mut("1")).unwrap();
 
+    // set the external_auth field in ConnectionSettings
     // external_auth function / closure signature must be:
-    // async fn(ClientId, AuthUser, AuthPass) -> bool
+    // Fn(ClientId, AuthUser, AuthPass) -> bool
     // type for ClientId, AuthUser and AuthPass is String
-    server.set_auth_handler(auth);
-
-    // or you can pass closure
-    // server.set_auth_handler(|_client_id, _username, _password| async {
-    //     // perform auth
-    //     true
-    // });
+    server.connections.external_auth = Some(Arc::new(auth));
 
     let mut broker = Broker::new(config);
 
     broker.start().unwrap();
 }
 
-async fn auth(_client_id: String, _username: String, _password: String) -> bool {
+fn auth(_client_id: String, _username: String, _password: String) -> bool {
     // users can fetch data from DB or tokens and use them!
     // do the verification and return true if verified, else false
     true

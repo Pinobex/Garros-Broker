@@ -18,9 +18,18 @@ rust.toolchain(
 )
 
 crate = use_extension("@rules_rust//crate_universe:extensions.bzl", "crate")
-crate.spec(package = "rumqttd", version = "0.19.0")
-crate.spec(package = "tracing-subscriber", version = "0.3")
-crate.spec(package = "config", version = "0.14")
+crate.spec(
+    package = "rumqttd",
+    version = "0.19.0",
+)
+crate.spec(
+    package = "tracing-subscriber",
+    version = "0.3",
+)
+crate.spec(
+    package = "config",
+    version = "0.14",
+)
 crate.from_specs()
 use_repo(crate, "crates")
 
