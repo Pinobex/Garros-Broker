@@ -16,7 +16,7 @@ fn main() {
         .expect("initialized subscriber succesfully");
 
     let config = config::Config::builder()
-        .add_source(config::File::with_name("rumqttd.toml"))
+        .add_source(config::File::with_name("config.toml"))
         .build()
         .unwrap();
     let mut config: Config = config.try_deserialize().unwrap();
