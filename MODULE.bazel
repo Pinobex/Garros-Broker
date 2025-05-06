@@ -30,6 +30,18 @@ crate.spec(
     package = "config",
     version = "0.14",
 )
+crate.spec(
+    package = "rumqttc",
+    version = "0.24.0",
+)
+crate.spec(
+    package = "pretty_env_logger",
+    version = "0.4",
+)
+crate.spec(
+    package = "tokio",
+    version = "1",
+)
 crate.from_specs()
 use_repo(crate, "crates")
 
